@@ -267,5 +267,20 @@ namespace SListTests
 		}
 
 		TEST_METHOD(Add)
+		{
+			SList <int> list;
+			list.Add(3);
+			Assert::IsTrue(list.NodeCounter() == 1);
+		}
+
+		TEST_METHOD(DelNode)
+		{
+			SList <int> list;
+			list.Add(5);
+			list.Add(3);
+			list.Add(4);
+			list.DelNode(list.GetPointer(2));
+			Assert::IsTrue(list.NodeCounter() == 2);
+		}
 	};
 }

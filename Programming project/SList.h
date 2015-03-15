@@ -78,7 +78,6 @@ public:
 			}
 			if (counter = nodeN)
 				return tmp;
-			else OutputDebugString("In function GetPointer: there was no node\n");
 		}
 	}
 
