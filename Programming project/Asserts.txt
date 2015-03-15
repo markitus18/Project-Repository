@@ -1,0 +1,118 @@
+#include <Assert.h>
+
+//Const
+/*
+Const és un element que és constant. Declara la intenció del programador sobre un métode o una variable, declarant que no canviarà.
+Una variable const no varia, un métode const no variarà els valors de les variables de la clase
+*/
+
+//NULL
+/*
+En algún lloc del codi, es defineix NULL = 0. Tot i aixó, NULL s'acostuma a restringir
+als punters per a que es pugui reconéixer fàcilment.
+*/
+
+//Assert (int expressió)
+/*
+A assert se li envia una expresió ( o condició) y, en cas de que sigui 0 
+(la condició sigui falsa) saltarà un error i es pararà l'execució del programa
+*/
+
+//sprintf_s
+/*
+char textura[100] = "Madera.png";
+ char output[500];
+sprintf_s(output, 500, "Cargando textura: %s", textura);
+*/
+
+//___________________________________________________________________________________________________________________________________________________________
+
+//Primera prova amb asserts
+/*
+int main(int argc, char** argv)
+{
+	int a = argc;
+
+	assert(a != 1);
+
+}
+*/
+
+//___________________________________________________________________________________________________________________________________________________________
+
+/*
+void setString(char* p)
+{
+	// assert(p != NULL); //Aquest assert faria la mateixa funció que el if, saltant error si es rep un NULL
+	if (p != NULL)
+	{
+		strcpy_s(p, 100, "hola mundo");
+	}
+}
+
+void PrintFloat(char* cadena, float valor)
+{
+	assert(cadena != NULL);
+	assert(valor >= 100 && valor <= 500);
+	sprintf_s(cadena, 100, "%f", valor); //sprintf és similar a printf, peró afegeix valor al string cadena.
+}
+
+int main(int argc, char** argv)
+{
+	char cadena[100];
+	char* pepito = NULL;
+	setString(pepito);
+	printf("%s", pepito);
+	getchar();
+
+	float valor=200.0f;
+	PrintFloat(cadena, valor);
+	getchar();
+}
+*/
+//___________________________________________________________________________________________________________________________________________________________
+/*
+//Aquest programa rep una cadena que envia directament al output
+void Log(char* cadena)
+{
+	assert(cadena);
+	//OutputDebugString(cadena);
+
+}
+
+int main(int argc, char** argv)
+{
+	Log("hola mundo");
+
+	getchar();
+	return 0;
+
+}*/
+
+//___________________________________________________________________________________________________________________________________________________________
+
+int main(int argc, char** argv)
+{
+	char textura[100] = "Madera.png";
+
+	Log("Cargando textura %s en %f segundos", textura, 3.1415)
+}
+
+
+class exemple
+{
+	const int valor;
+
+	exemple() : valor(15) // Les variables realment s'inicialitzen aqui, al constructor, abans d'entrar al métode. Si es vol inicialitzar un const s'ha de fer aqui.
+							//També, si s'inicialitza una variable dins el métode, s'estarà inicialitzant dues vegades. Aqui i al métode.
+	{
+
+	}
+
+};
+
+//Punters constants
+/*
+const char * c = "hola"; //En aquest punter, no es pot canviar el contingut de on apunta, pero SI es pot canviar la direcció de memoria del punter.
+char * const c = "hola"; //En aquest punter, SI es pot canviar el contingut de on apunta, pero NO es pot canviar la direcció de memoria on apunta el punter.
+*/
