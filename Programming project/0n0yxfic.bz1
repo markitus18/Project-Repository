@@ -31,11 +31,11 @@ public:
 	int NodeCounter()
 	{
 		int counter = 0;
-		if (start != NULL && end != NULL)
+		if (start != NULL/* && end != NULL*/);
 		{
 			dnode<TYPE>* tmp = new dnode<TYPE>;
 			tmp = start;
-			counter = 1;
+			int counter = 1;
 			while (tmp->next != NULL)
 			{
 				counter++;

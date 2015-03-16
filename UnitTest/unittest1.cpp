@@ -5,6 +5,7 @@
 #include "../Programming project/String.h"
 #include "../Programming project/String.cpp"
 #include "../Programming project/SList.h"
+#include "../Programming project/DList.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 namespace Point2fTests
@@ -281,6 +282,58 @@ namespace SListTests
 			list.Add(4);
 			list.DelNode(list.GetPointer(2));
 			Assert::IsTrue(list.NodeCounter() == 2);
+		}
+
+		TEST_METHOD(DelList)
+		{
+			DList <int> list;
+			list.Add(5);
+			list.Add(5);
+			list.Add(5);
+			list.DelList();
+			Assert::IsTrue(list.NodeCounter() == 0);
+		}
+	};
+}
+
+namespace DListTests
+{
+	TEST_CLASS(DListMethods)
+	{
+		TEST_METHOD(NodeCounter)
+		{
+			DList <int> list;
+			Assert::IsTrue(list.NodeCounter() == 0);
+			list.Add(5);
+			list.Add(2);
+			Assert::IsTrue(list.NodeCounter() == 2);
+		}
+
+		TEST_METHOD(Add)
+		{
+			DList <int> list;
+			list.Add(3);
+			Assert::IsTrue(list.NodeCounter() == 1);
+		}
+
+		TEST_METHOD(DelNode)
+		{
+			DList <int> list;
+			list.Add(5);
+			list.Add(3);
+			list.Add(4);
+			list.DelNode(list.GetPointer(2));
+			Assert::IsTrue(list.NodeCounter() == 2);
+		}
+
+		TEST_METHOD(DelList)
+		{
+			DList <int> list;
+			list.Add(5);
+			list.Add(5);
+			list.Add(5);
+			list.DelList();
+			Assert::IsTrue(list.NodeCounter() == 0);
 		}
 	};
 }

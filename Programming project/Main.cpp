@@ -6,13 +6,12 @@
 
 int main(int argc, char** argv)
 {
-	int b = 0;
+	int b;
 	
 	DList <int> list;
+	b = list.NodeCounter();
 	list.Add(5);
-//	list.Add(4);
-	list.Add(6);
-	list.DelNode(list.GetPointer(0));
+	list.Add(2);
 	b = list.NodeCounter();
 	return 0;
 }

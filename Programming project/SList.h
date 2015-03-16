@@ -81,7 +81,7 @@ public:
 		}
 	}
 
-	void Delsnode(snode<TYPE>* del)
+	void DelNode(snode<TYPE>* del)
 	{				
 
 		if (start != NULL)
