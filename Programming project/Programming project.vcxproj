@@ -64,6 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DList.h" />
     <ClInclude Include="Point2f.h" />
     <ClInclude Include="SList.h" />
     <ClInclude Include="String.h" />

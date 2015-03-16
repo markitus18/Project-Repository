@@ -2,10 +2,10 @@
 #include <Windows.h>
 
 template <class TYPE>
-struct node
+struct snode
 {
 	TYPE atr;
-	node* next;
+	snode* next;
 };
 
 template <class TYPE>
@@ -13,7 +13,7 @@ class SList
 {
 private:
 
-	node<TYPE>* start;
+	snode<TYPE>* start;
 
 public:
 	
@@ -30,7 +30,7 @@ public:
 		int counter = 0;
 		if (start != NULL)
 		{
-			node<TYPE>* tmp = new node<TYPE>;
+			snode<TYPE>* tmp = new snode<TYPE>;
 			tmp = start;
 			counter = 1;
 			while (tmp->next != NULL)
@@ -44,7 +44,7 @@ public:
 
 	void Add(TYPE atrToAdd)
 	{			
-		node<TYPE>* tmp = new node<TYPE>;
+		snode<TYPE>* tmp = new snode<TYPE>;
 		tmp = start;
 		if (start != NULL)
 		{
@@ -54,34 +54,34 @@ public:
 			}
 
 		}	
-		node<TYPE>* nodeX = new node < TYPE > ;
+		snode<TYPE>* snodeX = new snode < TYPE > ;
 		if (start != NULL)
-			tmp->next = nodeX;
+			tmp->next = snodeX;
 		else
-			start = nodeX;
-		nodeX->atr = atrToAdd;
-		nodeX->next = NULL;			
+			start = snodeX;
+		snodeX->atr = atrToAdd;
+		snodeX->next = NULL;			
 	}
 
 
-	node<TYPE>* GetPointer(int nodeN)
+	snode<TYPE>* GetPointer(int snodeN)
 	{
 		if (start != NULL)
 		{
 			int counter = 0;
-			node<TYPE>* tmp = new node<TYPE>;
+			snode<TYPE>* tmp = new snode<TYPE>;
 			tmp = start;
-			while (tmp->next != NULL && counter < nodeN)
+			while (tmp->next != NULL && counter < snodeN)
 			{
 				tmp = tmp->next;
 				counter++;
 			}
-			if (counter = nodeN)
+			if (counter = snodeN)
 				return tmp;
 		}
 	}
 
-	void DelNode(node<TYPE>* del)
+	void Delsnode(snode<TYPE>* del)
 	{				
 
 		if (start != NULL)
@@ -89,7 +89,7 @@ public:
 			if (del != NULL)
 			{	
 
-				node<TYPE>* tmp = new node < TYPE > ;
+				snode<TYPE>* tmp = new snode < TYPE > ;
 				tmp = start;
 				while (tmp->next != NULL && tmp->next != del)
 				{
@@ -104,8 +104,8 @@ public:
 	{
 		if (start != NULL)
 		{
-			node < TYPE >* tmp = new node < TYPE > ;
-			node< TYPE >* tmp2 = new node < TYPE > ;
+			snode < TYPE >* tmp = new snode < TYPE > ;
+			snode< TYPE >* tmp2 = new snode < TYPE > ;
 			tmp = start;
 			while (tmp->next != NULL)
 			{
