@@ -33,10 +33,7 @@ public:
 
 	~DynArray()
 	{
-		if (data != NULL)
-		{
 			delete[] data;
-		}
 	}
 
 	void Reallocate(const unsigned int newMemorySize)
@@ -64,46 +61,54 @@ public:
 
 	void PushBack(const int value) //afegir un valor al final
 	{
-		if (data != NULL)
+		if (numElements + 1 == allocatedMemory)
 		{
-			if (numElements + 1 == allocatedMemory)
-			{
-				Reallocate(allocatedMemory + 1);
-			}
-			else
-			{
-				numElements++;
-			}
-			data[numElements-1] = value;
+			Reallocate(allocatedMemory + 1);
 		}
-	}
-
-	int Pop() //esborra l'ultim valor
-	{
-		numElements--;
-	}
-
-	void Insert(const int value, const unsigned int position) //afegir un valor a la posicio X
-	{
-		if (data!= NULL)
+		else
 		{
-			if (position > allocatedMemory - 1)
+			numElements++;
+		}
+		data[numElements-1] = value;
+	}
+
+	bool Pop() //esborra l'ultim valor
+	{
+		if (numElements > 0)
+		{
+			numElements--;
+			return true;
+		}
+		else
+			return false;
+	}
+	//CHECK FROM INSERT
+	bool Insert(const int value, const unsigned int position) //afegir un valor a la posicio X
+	{
+		if (position > numElements)
+		{
+			return false;
+		}
+
+		if (position == numElements)
+		{
+			PushBack(value);
+			return true;
+		}
+
+		if (numElements + 1 == allocatedMemory)
+		{
+			Reallocate(allocatedMemory + 1);
+			TYPE* newData = new TYPE[numElements + 2];
+			newData = data;
+			for (int i = 0; i < position; i++)
 			{
-				Reallocate(position + 1);
+				data[i] = newData[i];
 			}
-			if (numElements + 1 < allocatedMemory)
+			data[position] = value;
+			for (int i = position+1; i < numElements + 1; i++)
 			{
-				TYPE* newData = new TYPE[numElements + 2];
-				newData = data;
-				for (int i = 0; i < position; i++)
-				{
-					data[i] = newData[i];
-				}
-				data[position] = value;
-				for (int i = position+1; i < numElements + 1; i++)
-				{
-					data[i] = newData[i - 1];
-				}
+				data[i] = newData[i - 1];
 			}
 		}
 	}
@@ -118,6 +123,11 @@ public:
 	{
 		assert(index < numElements);
 		return data[index];
+	}
+
+	void Clear()
+	{
+		numElements = 0;
 	}
 };
 

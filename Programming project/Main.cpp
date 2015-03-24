@@ -9,8 +9,8 @@ int main(int argc, char** argv)
 {
 	DynArray <int> arr(5);
 	arr.Reallocate(6);
-	arr.PushBack(3);
-	arr.Insert(5, 4);
-	arr[0] = 1;
+	arr.PushBack(1);
+	arr.Insert(5, 1);
+	arr[0] = 3;
 	return 0;
 }
