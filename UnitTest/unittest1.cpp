@@ -337,3 +337,11 @@ namespace DListTests
 		}
 	};
 }
+
+namespace DynArrayTests
+{
+	TEST_CLASS(DynArrayMethods)
+	{
+		
+	}
+}

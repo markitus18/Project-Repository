@@ -147,6 +147,19 @@ public:
 	}
 
 
+	/////////
+	//Utils//
+	/////////
+
+	int GetCapacity()
+	{
+		return allocatedMemory;
+	}
+
+	int GetSize()
+	{
+		return numElements;
+	}
 
 private:
 		
