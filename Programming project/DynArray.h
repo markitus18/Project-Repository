@@ -65,10 +65,7 @@ public:
 		{
 			Reallocate(allocatedMemory + 1);
 		}
-		else
-		{
-			numElements++;
-		}
+		numElements++;
 		data[numElements-1] = value;
 	}
 
@@ -100,16 +97,19 @@ public:
 		{
 			Reallocate(allocatedMemory + 1);
 			TYPE* newData = new TYPE[numElements + 2];
-			newData = data;
-			for (int i = 0; i < position; i++)
+
+			for (int i = 0; i <= numElements; i++)
 			{
-				data[i] = newData[i];
+				newData[i] = data[i];
 			}
+
 			data[position] = value;
+			numElements++;
 			for (int i = position+1; i < numElements + 1; i++)
 			{
 				data[i] = newData[i - 1];
 			}
+
 		}
 	}
 
