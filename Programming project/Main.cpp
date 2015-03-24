@@ -5,23 +5,17 @@
 #include "DynArray.h"
 #include "globals.h"
 
-#include <iostream>
 
 int main(int argc, char** argv)
 {
-	DynArray <int> arr(5);
-	arr.Reallocate(4);
-	arr.PushBack(1);
-	arr.PushBack(2);
-	arr.PushBack(3);
-	arr.Insert(5, 4);
-//	arr[0] = 3;
+	DynArray<int> array;
 
-
-
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 16; ++i)
 	{
-		std::cout << arr[i];
+		array.PushBack(i);
 	}
-	return 0;
+
+	array.Insert(999, 3);
+	array.Insert(888, 5);
+	array.Insert(777, 8);
 }

@@ -52,10 +52,13 @@ public:
 
 	void PushBack(const TYPE value) //afegir un valor al final
 	{
-		if (numElements + 1 == allocatedMemory)
+		if (data == NULL)
 		{
-			Reallocate(allocatedMemory + 1);
+			Reallocate(allocatedMemory + 2);
 		}
+		else if (numElements +1 >= allocatedMemory)
+			Reallocate(allocatedMemory + 1);
+
 		numElements++;
 		data[numElements-1] = value;
 	}
@@ -165,24 +168,21 @@ private:
 		
 	void Reallocate(const unsigned int newMemorySize)
 	{
-		if (data != NULL)
+		TYPE* newData = new TYPE[newMemorySize];
+
+		for (int i = 0; i < MIN(newMemorySize, allocatedMemory); i++)
 		{
-			TYPE* newData = new TYPE[newMemorySize];
+			newData[i] = data[i];
+		}
 
-			for (int i = 0; i < MIN(newMemorySize, allocatedMemory); i++)
-			{
-				newData[i] = data[i];
-			}
+		delete[]data;
+		allocatedMemory = newMemorySize;
+		data = new TYPE[allocatedMemory];
+		data = newData;
 
-			delete[]data;
-			allocatedMemory = newMemorySize;
-			data = new TYPE[allocatedMemory];
-			data = newData;
-
-			if (numElements >= allocatedMemory)
-			{
-				numElements = allocatedMemory - 1;
-			}
+		if (numElements >= allocatedMemory)
+		{
+			numElements = allocatedMemory - 1;
 		}
 	}
 };

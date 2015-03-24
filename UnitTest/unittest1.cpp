@@ -1,11 +1,13 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 
-#include "../Programming project/Point2f.h"
-#include "../Programming project/String.h"
-#include "../Programming project/String.cpp"
-#include "../Programming project/SList.h"
-#include "../Programming project/DList.h"
+#include "..\Programming project\Point2f.h"
+#include "..\Programming project\String.h"
+#include "..\Programming project\String.cpp"
+#include "..\Programming project\SList.h"
+#include "..\Programming project\DList.h"
+#include "..\Programming project\DynArray.h"
+
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 namespace Point2fTests
@@ -254,6 +256,7 @@ namespace StringTests
 		}
 	};
 }
+
 namespace SListTests
 {
 	TEST_CLASS(SListMethods)
@@ -342,6 +345,122 @@ namespace DynArrayTests
 {
 	TEST_CLASS(DynArrayMethods)
 	{
+		TEST_METHOD(DynArray_constructor1)
+		{
+			DynArray<int> array;
+			Assert::AreEqual((int)array.GetCapacity(), 0);
+		}
+
+		TEST_METHOD(DynArray_constructor)
+		{
+			DynArray<int> array(33);
+			Assert::AreEqual((int)array.GetCapacity(), 34);
+		}
+
+		TEST_METHOD(DynArray_push_back)
+		{
+			DynArray<int> array;
+
+			array.PushBack(1);
+			array.PushBack(2);
+			array.PushBack(3);
+			Assert::AreEqual((int)array.GetCapacity(), 4);
+			Assert::AreEqual((int)array.GetSize(), 3);
+		}
+
+		TEST_METHOD(DynArray_pop)
+		{
+			DynArray<int> array;
+
+			array.PushBack(1);
+			array.PushBack(2);
+			array.PushBack(3);
+
+			Assert::IsTrue(array.Pop());
+			Assert::IsTrue(array.Pop());
+
+			Assert::AreEqual((int)array.GetCapacity(), 4);
+			Assert::AreEqual((int)array.GetSize(), 1);
+
+		}
+
+		TEST_METHOD(DynArray_clear)
+		{
+			DynArray<int> array;
+
+			array.PushBack(1);
+			array.PushBack(2);
+			array.PushBack(3);
+			array.Clear();
+
+			Assert::AreEqual((int)array.GetCapacity(), 4);
+			Assert::AreEqual((int)array.GetSize(), 0);
+		}
+
+
+		TEST_METHOD(DynArray_op)
+		{
+			DynArray<int> array;
+
+			array.PushBack(1);
+			array.PushBack(2);
+			array.PushBack(3);
+
+			Assert::AreEqual(array[0], 1);
+			Assert::AreEqual(array[1], 2);
+			Assert::AreEqual(array[2], 3);
+		}
+
+		TEST_METHOD(DynArray_at)
+		{
+			DynArray<int> array;
+
+			array.PushBack(1);
+			array.PushBack(2);
+			array.PushBack(3);
+
+			Assert::AreEqual(*(array.At(0)), 1);
+			Assert::AreEqual(*(array.At(1)), 2);
+			Assert::AreEqual(*(array.At(2)), 3);
+			Assert::IsNull(array.At(3));
+		}
+
+		TEST_METHOD(DynArray_resize)
+		{
+			DynArray<int> array;
+
+			for (int i = 0; i < 999; ++i)
+			{
+				array.PushBack(i);
+			}
+
+			Assert::AreEqual(*(array.At(900)), 900);
+			Assert::IsNull(array.At(1000));
+
+			Assert::AreEqual((int)array.GetCapacity(), 1000);
+			Assert::AreEqual((int)array.GetSize(), 999);
+		}
+
+		TEST_METHOD(DynArray_insert)
+		{
+			DynArray<int> array;
+
+			for (int i = 0; i < 16; ++i)
+			{
+				array.PushBack(i);
+			}
+
+			array.Insert(999, 3);
+			array.Insert(888, 5);
+			array.Insert(777, 8);
+
+			Assert::IsFalse(array.Insert(777, 50));
+			Assert::AreEqual((int)array.GetCapacity(), 20);
+			Assert::AreEqual((int)array.GetSize(), 19);
+			Assert::AreEqual((int)array[3], 999);
+			Assert::AreEqual((int)array[5], 888);
+			Assert::AreEqual((int)array[8], 777);
+		}
 		
-	}
+	};
 }
