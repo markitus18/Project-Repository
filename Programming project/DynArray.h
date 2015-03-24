@@ -17,6 +17,10 @@ private:
 
 public:
 
+	////////////////
+	//Constructors//
+	////////////////
+
 	DynArray()
 	{
 		data = NULL;
@@ -31,35 +35,22 @@ public:
 		numElements = 0;
 	}
 
+
+	///////////////
+	//Destructor//
+	///////////////
+
 	~DynArray()
 	{
 			delete[] data;
 	}
 
-	void Reallocate(const unsigned int newMemorySize)
-	{
-		if (data != NULL)
-		{
-			TYPE* newData = new TYPE[newMemorySize];
 
-			for (int i = 0; i < MIN(newMemorySize, allocatedMemory); i++)
-			{
-				newData[i] = data[i];
-			}
+	///////////////////
+	//Data Management//
+	///////////////////
 
-			delete[]data;
-			allocatedMemory = newMemorySize;
-			data = new TYPE[allocatedMemory];
-			data = newData;
-
-			if (numElements >= allocatedMemory)
-			{
-				numElements = allocatedMemory - 1;
-			}
-		}
-	}
-
-	void PushBack(const int value) //afegir un valor al final
+	void PushBack(const TYPE value) //afegir un valor al final
 	{
 		if (numElements + 1 == allocatedMemory)
 		{
@@ -79,8 +70,8 @@ public:
 		else
 			return false;
 	}
-	//CHECK FROM INSERT
-	bool Insert(const int value, const unsigned int position) //afegir un valor a la posicio X
+
+	bool Insert(const TYPE value, const unsigned int position) //afegir un valor a la posicio X
 	{
 		if (position > numElements)
 		{
@@ -113,21 +104,73 @@ public:
 		}
 	}
 
-	int& operator[](const unsigned int index) //retorna el valor de la posicio index, amb una referència per poder modificar-la
+	TYPE* At(const unsigned int index)
 	{
-		assert(index < numElements);
-		return data[index];
+		TYPE* atr = NULL;
+		if (index < numElements)
+		{
+			return atr = &data[index];
+		}
+		return atr;
 	}
 
-	const int& operator[](const unsigned int index) const
+	const TYPE* At(const unsigned int index) const
 	{
-		assert(index < numElements);
-		return data[index];
+		TYPE* atr = NULL;
+		if (index < numElements)
+		{
+			return atr = &data[index];
+		}
+		return atr;
 	}
 
 	void Clear()
 	{
 		numElements = 0;
+	}
+
+
+	/////////////
+	//Operators//
+	/////////////
+
+	TYPE& operator[](const unsigned int index) //retorna el valor de la posicio index, amb una referència per poder modificar-la
+	{
+		assert(index < numElements);
+		return data[index];
+	}
+
+	const TYPE& operator[](const unsigned int index) const
+	{
+		assert(index < numElements);
+		return data[index];
+	}
+
+
+
+private:
+		
+	void Reallocate(const unsigned int newMemorySize)
+	{
+		if (data != NULL)
+		{
+			TYPE* newData = new TYPE[newMemorySize];
+
+			for (int i = 0; i < MIN(newMemorySize, allocatedMemory); i++)
+			{
+				newData[i] = data[i];
+			}
+
+			delete[]data;
+			allocatedMemory = newMemorySize;
+			data = new TYPE[allocatedMemory];
+			data = newData;
+
+			if (numElements >= allocatedMemory)
+			{
+				numElements = allocatedMemory - 1;
+			}
+		}
 	}
 };
 
