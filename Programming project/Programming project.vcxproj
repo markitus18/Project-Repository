@@ -69,7 +69,9 @@
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Point2f.h" />
     <ClInclude Include="Projectile.h" />
+    <ClInclude Include="Queue.h" />
     <ClInclude Include="SList.h" />
+    <ClInclude Include="Stack.h" />
     <ClInclude Include="String.h" />
   </ItemGroup>
   <ItemGroup>
