@@ -68,6 +68,7 @@
     <ClInclude Include="DynArray.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Point2f.h" />
+    <ClInclude Include="Projectile.h" />
     <ClInclude Include="SList.h" />
     <ClInclude Include="String.h" />
   </ItemGroup>
@@ -78,6 +79,7 @@
   <ItemGroup>
     <Text Include="Asserts.txt" />
     <Text Include="CodeStyle.txt" />
+    <Text Include="Readme.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

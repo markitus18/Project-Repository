@@ -30,7 +30,7 @@ public:
 
 	DynArray(const unsigned int size)
 	{
-		allocatedMemory = size + 1;
+		allocatedMemory = size;
 		data = new TYPE[allocatedMemory];
 		numElements = 0;
 	}
@@ -52,11 +52,8 @@ public:
 
 	void PushBack(const TYPE value) //afegir un valor al final
 	{
-		if (data == NULL)
-		{
-			Reallocate(allocatedMemory + 2);
-		}
-		else if (numElements +1 >= allocatedMemory)
+
+		if (numElements +1 > allocatedMemory)
 			Reallocate(allocatedMemory + 1);
 
 		numElements++;
@@ -154,14 +151,35 @@ public:
 	//Utils//
 	/////////
 
-	int GetCapacity()
+	unsigned int GetCapacity()
 	{
 		return allocatedMemory;
 	}
 
-	int GetSize()
+	unsigned int GetSize()
 	{
 		return numElements;
+	}
+
+	unsigned int removeWastedMemory()
+	{
+		if (numElements == allocatedMemory)
+		{
+			return 0;
+		}
+
+		int toRemove = allocatedMemory - numElements;
+		TYPE* newData = new TYPE[numElements];
+		for (int i = 0; i < numElements; i++)
+		{
+			newData[i] = data[i];
+		}
+		delete[] data;
+		allocatedMemory = numElements;
+		data = new TYPE[allocatedMemory];
+		data = newData;
+
+		return toRemove;
 	}
 
 private:

@@ -5,17 +5,17 @@
 #include "DynArray.h"
 #include "globals.h"
 
+#include "Projectile.h"
+#include "Point2f.h"
 
 int main(int argc, char** argv)
 {
-	DynArray<int> array;
+	String a("1234567890");
+	String b("asdfasdfasdfasdfasdfasdfsdaf");
+	b = "hola";
+	a.prefix(b);
+	b.prefix("1234567890");
 
-	for (int i = 0; i < 16; ++i)
-	{
-		array.PushBack(i);
-	}
 
-	array.Insert(999, 3);
-	array.Insert(888, 5);
-	array.Insert(777, 8);
+	return 0;
 }

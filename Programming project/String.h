@@ -44,6 +44,42 @@ public:
 
 	String operator += (const String& string);
 
+	String String::prefix(const String& string)
+	{
+		/*
+		if (memorySize > GetLenght() + string.GetLenght())
+		{
+		String tmp(*this);
+		strcpy_s(str, string.memorySize, string.str);
+		strcat_s(str, GetLenght() + string.memorySize, tmp.str);
+
+		return str;
+		}
+		*/
+		String tmp(*this);
+		delete[]str;
+		memorySize = (tmp.memorySize + string.memorySize - 1);
+		str = new char[memorySize];
+
+		strcpy_s(str, string.memorySize, string.str);
+		strcat_s(str, memorySize, tmp.str);
+
+		return str;
+	}
+
+	String String::prefix(const char* string)
+	{
+		String tmp(*this);
+		delete[]str;
+		memorySize = (tmp.memorySize + strlen(string));
+		str = new char[memorySize];
+
+		strcpy_s(str, strlen(string) + 1, string);
+		strcat_s(str, memorySize, tmp.str);
+
+		return str;
+	}
+
 	void Clear();
 
 	int GetLenght() const;

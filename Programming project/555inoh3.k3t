@@ -140,8 +140,42 @@ String String::operator += (const String& string)
 	return *this;
 }
 
+String String::prefix(const String& string)
+{
+/*	
+if (memorySize > GetLenght() + string.GetLenght())
+	{
+		String tmp(*this);
+		strcpy_s(str, string.memorySize, string.str);
+		strcat_s(str, GetLenght() + string.memorySize, tmp.str);
 
+		return str;
+	}
+*/
+	String tmp(*this);
+	delete[]str;
+	memorySize = (tmp.memorySize + string.memorySize + 1);
+	str = new char[memorySize];
 
+	strcpy_s(str, string.memorySize, string.str);
+	strcat_s(str, memorySize, tmp.str);
+
+	return str;
+}
+
+/*String String::prefix(const char* string)
+{
+	String tmp(*this);
+	delete[]str;
+	memorySize = (tmp.memorySize + strlen(string) + 1);
+	str = new char[memorySize];
+
+	strcpy_s(str, strlen(string)+1, string);
+	strcat_s(str, memorySize, tmp.str);
+
+	return str;
+}
+*/
 int String::GetLenght() const
 {
 	return strlen(str);
@@ -171,7 +205,7 @@ void String::Alloc(const int memory)
 
 
 
-String::~String()
+String:: ~String()
 {
 	delete[] str;
 }

@@ -1,0 +1,1 @@
+He deixat la comprovació del "prefix" en el main, el unit test no compila el mateix codi que sí que compila el main

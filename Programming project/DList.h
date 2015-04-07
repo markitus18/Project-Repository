@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include <Windows.h>
 
+#include "Globals.h"
+
 template <class TYPE>
 struct dnode
 {
@@ -12,7 +14,7 @@ struct dnode
 template <class TYPE>
 class DList
 {
-private:
+public:
 
 	dnode<TYPE>* start;
 	dnode<TYPE>* end;
@@ -28,7 +30,7 @@ public:
 	~DList(){ DelList(); }
 
 
-	int NodeCounter()
+	unsigned int NodeCounter()
 	{
 		int counter = 0;
 		if (start != NULL && end != NULL)
@@ -48,7 +50,7 @@ public:
 
 	void Add(TYPE atrToAdd)
 	{
-		dnode < TYPE >* dnodeX = new dnode < TYPE > ;
+		dnode < TYPE >* dnodeX = new dnode < TYPE >;
 
 		if (start != NULL && end != NULL)
 		{
@@ -98,10 +100,35 @@ public:
 			}
 			else
 				end = del->previous;
+		}
+	}
+
+	unsigned int DelNodes(const int position, const int nodes)
+	{
+		if (start != NULL && end != NULL)
+		{
+			if (position < NodeCounter())
+			{
+				int counter;
+				for (counter = 0; counter < MIN(nodes, NodeCounter()); counter++)
+				{
+					DelNode(GetPointer(position + counter));
+				}
+				return counter + 1;
+			}
+
+		}
+		return 0;
+	}
+
+	/*		dnode<TYPE>* tmp = new dnode<TYPE>;
+			tmp = start;
+			for (int i = 0; i < position && tmp->next != NULL; i++)
+			{
+				tmp = tmp->next;
 			}
 		}
-
-
+	}*/
 	void DelList()
 	{
 		while (start != NULL && end != NULL)

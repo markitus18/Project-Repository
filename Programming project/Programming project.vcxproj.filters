@@ -33,6 +33,9 @@
     <ClInclude Include="Globals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -45,5 +48,6 @@
   <ItemGroup>
     <Text Include="CodeStyle.txt" />
     <Text Include="Asserts.txt" />
+    <Text Include="Readme.txt" />
   </ItemGroup>
 </Project>
