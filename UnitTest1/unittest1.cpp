@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-/*
+
 #include "..\Programming project\Point2f.h"
 #include "..\Programming project\String.h"
 #include "..\Programming project\String.cpp"
 #include "..\Programming project\SList.h"
 #include "..\Programming project\DList.h"
 #include "..\Programming project\DynArray.h"
-*/
+
 #include "..\Programming project\Projectile.h"
 #include "..\Programming project\Point2f.h"
 #include "..\Programming project\DynArray.h"
@@ -16,7 +16,7 @@
 #include "..\Programming project\DList.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
-/*
+
 namespace Point2fTests
 {
 

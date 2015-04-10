@@ -8,26 +8,13 @@
 #include "Point2f.h"
 */
 #include "Queue.h"
+#include "Tree.h"
 
 int main(int argc, char** argv)
 {
-	Queue <int> myQueue;
+	Tree<char> myTree;
 
-	int a = myQueue.Pop();
-	/*
-	for (int i = 0; i < 18; i++)
-	{
-		myQueue.PushBack(i);
-	}
+	tnode <char> a = myTree.Add("A");
 
-
-	int a = myQueue.Pop();
-	int b = myQueue.Pop();
-	int c = myQueue.Pop();
-	int d = myQueue.Pop();
-	int e = myQueue.Pop();
-
-	int f = myQueue.Pick(0);
-	*/
 	return 0;
 }

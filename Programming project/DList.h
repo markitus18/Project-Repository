@@ -121,14 +121,6 @@ public:
 		return 0;
 	}
 
-	/*		dnode<TYPE>* tmp = new dnode<TYPE>;
-			tmp = start;
-			for (int i = 0; i < position && tmp->next != NULL; i++)
-			{
-				tmp = tmp->next;
-			}
-		}
-	}*/
 	void DelList()
 	{
 		while (start != NULL && end != NULL)

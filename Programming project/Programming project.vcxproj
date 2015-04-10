@@ -73,6 +73,7 @@
     <ClInclude Include="SList.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="String.h" />
+    <ClInclude Include="Tree.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />

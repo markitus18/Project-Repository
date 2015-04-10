@@ -2,6 +2,15 @@
 
 #define MAX(a, b) (a>b ? a:b)
 
+#ifndef __FACT__
+#define __FACT__
+unsigned int Fact(unsigned int value)
+{
+	if (value > 1){ return (value * Fact(value - 1)); }
+	return 1;
+}
+
+#endif //__FACT__
 
 #ifndef __SWAP__
 #define __SWAP__
@@ -14,4 +23,4 @@ void Swap(TIPUS& a, TIPUS& b)
 	b = tmp;
 }
 
-#endif
+#endif //__SWAP__
