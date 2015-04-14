@@ -15,7 +15,7 @@ int main(int argc, char** argv)
 	Tree<char> myTree('F');
 
 	treeNode <char>* b = myTree.Add('B');
-	treeNode <char>* g = myTree.Add('G');
+	treeNode <char>* g = myTree.Add('B');
 
 	myTree.Add('A', b);
 
@@ -28,17 +28,17 @@ int main(int argc, char** argv)
 
 	DList<char>* myList = new DList<char>;
 
-	myTree.VisitAllNodes_InorderRecursive(myList);
-
-
-	dnode<char>* tmp = new dnode<char>;
-	tmp = myList->start;
+	myTree.VisitAllNodes(myList);
 
 	for (int i = 0; i < 9; i++)
 	{
+		
+		dnode<char>* tmp = new dnode<char>;
+		tmp = myList->start;
 		std::cout << tmp->atr;
-		tmp = tmp->next;
 	}
 
+	return counter;
+	}
 	return 0;
 }
