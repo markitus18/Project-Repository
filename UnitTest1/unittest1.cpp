@@ -471,7 +471,7 @@ Assert::AreEqual((int)array[8], 777);
 
 };
 }
-
+*/
 
 namespace ExamTests
 {
@@ -506,18 +506,18 @@ namespace ExamTests
 			Assert::AreEqual((int)3, array[2]);
 		}
 
-		/*		TEST_METHOD(String_prefix)
-				{
-				String a("1234567890");
-				String b("asdfasdfasdfasdfasdfasdfsdaf");
-				b = "hola";
-				a.prefix(b);
-				b.prefix("1234567890");
-				Assert::AreEqual(strcmp(a.GetString(), "hola1234567890"), 0);
-				Assert::AreEqual(strcmp(b.GetString(), "1234567890hola"), 0);
-				Assert::IsTrue(1 == 1);
-				}*/
-
+/*		TEST_METHOD(String_prefix)
+		{
+			String a("1234567890");
+			String b("asdfasdfasdfasdfasdfasdfsdaf");
+			b = "hola";
+			a.prefix(b);
+			b.prefix("1234567890");
+			Assert::AreEqual(strcmp(a.GetString(), "hola1234567890"), 0);
+			Assert::AreEqual(strcmp(b.GetString(), "1234567890hola"), 0);
+			Assert::IsTrue(1 == 1);
+		}*/
+		
 		TEST_METHOD(p2List_delNodes_mid)
 		{
 			DList<int> l;
@@ -531,13 +531,4 @@ namespace ExamTests
 			Assert::AreEqual((unsigned int)2, l.NodeCounter());
 		}
 	};
-}
-
-namespace TreeTests
-{
-	TEST_CLASS(OrderTests)
-	{
-
-	};
-
 }

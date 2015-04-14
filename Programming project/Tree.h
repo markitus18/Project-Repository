@@ -3,99 +3,39 @@
 
 #include "DList.h"
 
-//crear "VisitAllNodes" en recursiu i iteratiu, en tots els tipus d'ordre; en iteratiu s'utilitza una pila de crides
-template <class DATA>
-struct treeNode
+template <class TYPE>
+struct tnode
 {
-	DATA data;
-	treeNode* parent;
-	DList<treeNode<DATA>*> children;
+	TYPE data;
+	tnode* parent;
+	DList<tnode<TYPE>> children;
 
-	treeNode(DATA _data)
+	tnode(TYPE _data)
 	{
 		data = _data;
 	}
-
-	void VisitAll_PreorderRecursive(DList<DATA>* list)
-	{
-		list->Add(data);
-		for (unsigned int i = 0; i < children.NodeCounter(); i++)
-		children.GetPointer(i)->atr->VisitAll_PreorderRecursive(list);
-	}
-
-	void VisitAll_PostorderRecursive(DList<DATA>* list)
-	{
-
-		for (unsigned int i = 0; i < children.NodeCounter(); i++)
-			children.GetPointer(i)->atr->VisitAll_PostorderRecursive(list);
-		list->Add(data);
-	}
-
-	void VisitAll_InorderRecursive(DList<DATA>* list)
-	{
-		for (unsigned int i = 0; i < children.NodeCounter()/2; i++)
-			children.GetPointer(i)->atr->VisitAll_InorderRecursive(list);
-		list->Add(data);
-		for (unsigned int i = children.NodeCounter() / 2; i < (children.NodeCounter()); i++)
-			children.GetPointer(i)->atr->VisitAll_InorderRecursive(list);
-	}
 };
 
-template <class DATA>
+template <class TYPE>
 class Tree
 {
-private:
-	treeNode<DATA>* rootNode;
+	tnode<TYPE>* rootNode;
 
 public:
 
-	///////////////
-	//Constructor//
-	///////////////
-
-	Tree(const DATA& dataGiven)
+	void Add(const TYPE& dataGiven)
 	{
-		rootNode = new treeNode<DATA>(dataGiven);
-		rootNode->data = dataGiven;
-		rootNode->parent = NULL;
-	}
-
-	treeNode<DATA>* Add(const DATA& dataGiven)
-	{
-		treeNode<DATA>* newNode = new treeNode<DATA>(dataGiven);
+		tnode<TYPE>* newNode = new tnode<TYPE>(dataGiven);
 		rootNode->children.Add(newNode);
-		newNode->parent = rootNode;
-		return newNode;
+		node->parent = root;
 	}
 
-	treeNode<DATA>* Add(DATA dataGiven, treeNode<DATA>* parentGiven)
+	void Add(TYPE dataGiven, tnode<TYPE>* parentGiven)
 	{
-		treeNode<DATA>* newNode = new treeNode<DATA>(dataGiven);
+		tnode<TYPE>* newNode = new tnode<TYPE>(dataGiven);
 		parentGiven->children.Add(newNode);
 		newNode->parent = parentGiven;
-		return newNode;
 	}
-
-	//Cerca "Pre-Order: pares->fills"  F B A D C E G I H
-	//		"In-Order:	meitat fills->pare->meitat fill	A B C D E F H I G	
-	//		"Post-Order: fills->pare"	A C E D B H I G F
-
-	void VisitAllNodes_PreorderRecursive(DList<DATA>* list) const
-	{
-		rootNode->VisitAll_PreorderRecursive(list);
-	}
-
-	void VisitAllNodes_PostorderRecursive(DList<DATA>* list) const
-	{
-		rootNode->VisitAll_PostorderRecursive(list);
-	}
-
-	void VisitAllNodes_InorderRecursive(DList<DATA>* list) const
-	{
-		rootNode->VisitAll_InorderRecursive(list);
-	}
-
-
 };
 
 #endif //__TREE_H__
