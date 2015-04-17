@@ -28,6 +28,7 @@ public:
 		data = new DATA[BLOCK_SIZE];
 		allocatedMemory = BLOCK_SIZE + 1;
 		numElements = 0;
+		startingPosition = 0;
 	}
 
 

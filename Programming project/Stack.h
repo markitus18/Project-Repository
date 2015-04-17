@@ -15,6 +15,7 @@ private:
 	DATA* data;
 	unsigned int allocatedMemory;
 	unsigned int numElements;
+	unsigned int startingPosition = 0;
 
 public:
 
@@ -43,7 +44,7 @@ public:
 	//Data Management//
 	///////////////////
 
-	void PushBack(DATA value) //afegir un valor al final
+	void Push(DATA value) //afegir un valor al final
 	{
 		if (numElements + 1 >= allocatedMemory)
 			Reallocate(allocatedMemory + BLOCK_SIZE);
@@ -55,10 +56,9 @@ public:
 	{
 		if (numElements > 0)
 		{
-			DATA value = data[startingPosition];
+			DATA value = data[numElements];
 
 			numElements--;
-			startingPosition++;
 
 			return value;
 		}

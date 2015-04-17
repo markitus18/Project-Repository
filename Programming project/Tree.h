@@ -2,6 +2,11 @@
 #define __THREE_H__
 
 #include "DList.h"
+#include "Stack.h"
+
+///Balanced Tree: de cada node en surten dos->cerques més òptimes dintre dels arbres
+
+
 
 //crear "VisitAllNodes" en recursiu i iteratiu, en tots els tipus d'ordre; en iteratiu s'utilitza una pila de crides
 template <class DATA>
@@ -79,7 +84,8 @@ public:
 	//Cerca "Pre-Order: pares->fills"  F B A D C E G I H
 	//		"In-Order:	meitat fills->pare->meitat fill	A B C D E F H I G	
 	//		"Post-Order: fills->pare"	A C E D B H I G F
-
+	
+	//Recursive functions
 	void VisitAllNodes_PreorderRecursive(DList<DATA>* list) const
 	{
 		rootNode->VisitAll_PreorderRecursive(list);
@@ -93,6 +99,33 @@ public:
 	void VisitAllNodes_InorderRecursive(DList<DATA>* list) const
 	{
 		rootNode->VisitAll_InorderRecursive(list);
+	}
+
+	//Iterative functions
+	void VisitAllNodes_PreorderIterative(DList<DATA>* list) const
+	{
+		Stack<treeNode<DATA>*> newStack;
+		treeNode<DATA>* newNode = rootNode;
+		
+		while (newNode)
+		{
+			list->Add(newNode->data);
+			for (int i = newNode->children.NodeCounter(); i > 0; i--)
+			{
+				newStack.Push(newNode->children.GetPointer(i - 1)->atr);
+			}
+			newNode = newStack.Pop();
+		}
+	}
+
+	void VisitAllNodes_PostorderIterative(DList<DATA>* list) const
+	{
+
+	}
+
+	void VisitAllNodes_InorderIterative(DList<DATA>* list) const
+	{
+
 	}
 
 

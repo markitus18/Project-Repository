@@ -9,6 +9,8 @@
 */
 #include "Queue.h"
 #include "Tree.h"
+#include "Stack.h"
+
 #include <iostream>
 int main(int argc, char** argv)
 {
@@ -28,7 +30,9 @@ int main(int argc, char** argv)
 
 	DList<char>* myList = new DList<char>;
 
-	myTree.VisitAllNodes_InorderRecursive(myList);
+
+
+	myTree.VisitAllNodes_PreorderIterative(myList);
 
 
 	dnode<char>* tmp = new dnode<char>;
