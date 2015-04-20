@@ -56,7 +56,7 @@ public:
 	{
 		if (numElements > 0)
 		{
-			DATA value = data[numElements];
+			DATA value = data[numElements-1];
 
 			numElements--;
 
