@@ -32,7 +32,7 @@ int main(int argc, char** argv)
 
 
 
-	myTree.VisitAllNodes_PreorderIterative(myList);
+	myTree.PreorderIterative(myList);
 
 
 	dnode<char>* tmp = new dnode<char>;
@@ -43,6 +43,8 @@ int main(int argc, char** argv)
 		std::cout << tmp->atr;
 		tmp = tmp->next;
 	}
+
+	system("pause");
 
 	return 0;
 }

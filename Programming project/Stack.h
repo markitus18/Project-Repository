@@ -15,7 +15,6 @@ private:
 	DATA* data;
 	unsigned int allocatedMemory;
 	unsigned int numElements;
-	unsigned int startingPosition = 0;
 
 public:
 
@@ -56,12 +55,13 @@ public:
 	{
 		if (numElements > 0)
 		{
-			DATA value = data[numElements-1];
+			DATA value = data[numElements - 1];
 
 			numElements--;
 
 			return value;
 		}
+		return NULL;
 	}
 
 	const DATA Pick(int position) const

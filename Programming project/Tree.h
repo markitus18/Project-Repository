@@ -86,44 +86,45 @@ public:
 	//		"Post-Order: fills->pare"	A C E D B H I G F
 	
 	//Recursive functions
-	void VisitAllNodes_PreorderRecursive(DList<DATA>* list) const
+	void PreorderRecursive(DList<DATA>* list) const
 	{
 		rootNode->VisitAll_PreorderRecursive(list);
 	}
 
-	void VisitAllNodes_PostorderRecursive(DList<DATA>* list) const
+	void PostorderRecursive(DList<DATA>* list) const
 	{
 		rootNode->VisitAll_PostorderRecursive(list);
 	}
 
-	void VisitAllNodes_InorderRecursive(DList<DATA>* list) const
+	void InorderRecursive(DList<DATA>* list) const
 	{
 		rootNode->VisitAll_InorderRecursive(list);
 	}
 
 	//Iterative functions
-	void VisitAllNodes_PreorderIterative(DList<DATA>* list) const
+	void PreorderIterative(DList<DATA>* list) const
 	{
 		Stack<treeNode<DATA>*> newStack;
 		treeNode<DATA>* newNode = rootNode;
-		
+		int i = 0;
 		while (newNode)
 		{
 			list->Add(newNode->data);
 			for (int i = newNode->children.NodeCounter(); i > 0; i--)
 			{
-				newStack.Push(newNode->children.GetPointer(i - 1)->atr);
+				newStack.Push(newNode->children.GetPointer(i-1)->atr);
 			}
 			newNode = newStack.Pop();
+		//	i++;
 		}
 	}
 
-	void VisitAllNodes_PostorderIterative(DList<DATA>* list) const
+	void PostorderIterative(DList<DATA>* list) const
 	{
 
 	}
 
-	void VisitAllNodes_InorderIterative(DList<DATA>* list) const
+	void InorderIterative(DList<DATA>* list) const
 	{
 
 	}

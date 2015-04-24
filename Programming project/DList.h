@@ -50,7 +50,7 @@ public:
 
 	void Add(TYPE atrToAdd)
 	{
-		dnode < TYPE >* dnodeX = new dnode < TYPE >;
+ 		dnode < TYPE >* dnodeX = new dnode < TYPE >;
 
 		if (start != NULL && end != NULL)
 		{
