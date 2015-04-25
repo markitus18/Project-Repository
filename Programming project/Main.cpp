@@ -28,21 +28,93 @@ int main(int argc, char** argv)
 	treeNode<char>* i = myTree.Add('I', g);
 	myTree.Add('H', i);
 
-	DList<char>* myList = new DList<char>;
+	DList<char>* myList_PreorderRecursive = new DList<char>;
+	DList<char>* myList_InorderRecursive = new DList<char>;
+	DList<char>* myList_PostorderRecursive = new DList<char>;
+	DList<char>* myList_PreorderIterative = new DList<char>;
+	DList<char>* myList_InorderIterative = new DList<char>;
+	DList<char>* myList_PostorderIterative = new DList<char>;
 
 
+	myTree.PreorderRecursive(myList_PreorderRecursive);
+	myTree.InorderRecursive(myList_InorderRecursive);
+	myTree.PostorderRecursive(myList_PostorderRecursive);
+	myTree.PreorderIterative(myList_PreorderIterative);
 
-	myTree.PreorderIterative(myList);
+	myTree.PostorderIterative(myList_PostorderIterative);
 
 
 	dnode<char>* tmp = new dnode<char>;
-	tmp = myList->start;
+
+	std::cout << "Preorder              F B A D C E G I H" << std::endl << std::endl;
+
+	tmp = myList_PreorderRecursive->start;
+	std::cout << "Preorder Recursive    ";
 
 	for (int i = 0; i < 9; i++)
 	{
-		std::cout << tmp->atr;
+		std::cout << tmp->atr << " ";
 		tmp = tmp->next;
 	}
+	std::cout << std::endl << std::endl;
+
+	tmp = myList_PreorderIterative->start;
+	std::cout << "Preorder Iterative    ";
+
+	for (int i = 0; i < 9; i++)
+	{
+		std::cout << tmp->atr << " ";
+		tmp = tmp->next;
+	}
+	std::cout << std::endl << std::endl << std::endl;
+
+	std::cout << "Inorder(rounded down) A B C D E F G I H" << std::endl << std::endl;
+
+	tmp = myList_InorderRecursive->start;
+	std::cout << "Inorder Recursive     ";
+
+	for (int i = 0; i < 9; i++)
+	{
+		std::cout << tmp->atr << " ";
+		tmp = tmp->next;
+	}
+	std::cout << std::endl << std::endl;
+
+	
+	tmp = myList_InorderIterative->start;
+	std::cout << "Inorder Iterative      ";
+	/*
+	for (int i = 0; i < 9; i++)
+	{
+		std::cout << tmp->atr << " ";
+		tmp = tmp->next;
+	}
+	*/
+	std::cout << std::endl << std::endl << std::endl;
+
+	std::cout << "Postorder             A C E D B H I G F" << std::endl << std::endl;
+
+	tmp = myList_PostorderRecursive->start;
+	std::cout << "Postorder Recursive:  ";
+
+	for (int i = 0; i < 9; i++)
+	{
+		std::cout << tmp->atr << " ";
+		tmp = tmp->next;
+	}
+	std::cout << std::endl << std::endl;
+
+
+	tmp = myList_PostorderIterative->start;
+	std::cout << "Postorder Iterative   ";
+
+	for (int i = 0; i < 9; i++)
+	{
+		std::cout << tmp->atr << " ";
+		tmp = tmp->next;
+	}
+
+	std::cout << std::endl << std::endl;
 
 	system("pause");
 

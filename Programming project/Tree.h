@@ -82,7 +82,7 @@ public:
 	}
 
 	//Cerca "Pre-Order: pares->fills"  F B A D C E G I H
-	//		"In-Order:	meitat fills->pare->meitat fill	A B C D E F H I G	
+	//		"In-Order:	meitat fills->pare->meitat fill	A B C D E F G I H
 	//		"Post-Order: fills->pare"	A C E D B H I G F
 	
 	//Recursive functions
@@ -106,7 +106,6 @@ public:
 	{
 		Stack<treeNode<DATA>*> newStack;
 		treeNode<DATA>* newNode = rootNode;
-		int i = 0;
 		while (newNode)
 		{
 			list->Add(newNode->data);
@@ -115,12 +114,34 @@ public:
 				newStack.Push(newNode->children.GetPointer(i-1)->atr);
 			}
 			newNode = newStack.Pop();
-		//	i++;
 		}
 	}
 
 	void PostorderIterative(DList<DATA>* list) const
 	{
+		Stack<treeNode<DATA>*> primaryStack;
+		Stack<treeNode<DATA>*> auxiliarStack;
+
+		treeNode<DATA>* newNode = rootNode;
+
+		while (newNode)
+		{
+			primaryStack.Push(newNode);
+
+				for (int i = 0; i < newNode->children.NodeCounter(); i++)
+				{
+					auxiliarStack.Push(newNode->children.GetPointer(i)->atr);
+				}
+
+			newNode = auxiliarStack.Pop();
+		}
+
+		do
+		{
+			newNode = primaryStack.Pop();
+			if (newNode)
+				list->Add(newNode->data);
+		} while (newNode);
 
 	}
 
