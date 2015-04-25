@@ -15,6 +15,7 @@ struct treeNode
 	DATA data;
 	treeNode* parent;
 	DList<treeNode<DATA>*> children;
+	bool halfDone = false;
 
 	treeNode(DATA _data)
 	{
@@ -147,7 +148,34 @@ public:
 
 	void InorderIterative(DList<DATA>* list) const
 	{
+		Stack<treeNode<DATA>*> newStack;
+		treeNode<DATA>* newNode = rootNode;
 
+		while (newNode)
+		{
+			if (newNode->halfDone == false)
+			{
+				for (int i = newNode->children.NodeCounter(); i > newNode->children.NodeCounter() / 2; i--)
+					{
+						newStack.Push(newNode->children.GetPointer(i-1)->atr);
+					}
+
+				newStack.Push(newNode);
+				newNode->halfDone = true;
+				
+				for (int i = newNode->children.NodeCounter() / 2 - 1; i >= 0; i--)
+				{
+					newStack.Push(newNode->children.GetPointer(i)->atr);
+				}
+			}
+
+			else
+			{
+				list->Add(newNode->data);
+			}
+
+			newNode = newStack.Pop();
+		}
 	}
 
 

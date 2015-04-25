@@ -14,6 +14,9 @@
 #include <iostream>
 int main(int argc, char** argv)
 {
+
+	int nodes = 10;
+/*
 	Tree<char> myTree('F');
 
 	treeNode <char>* b = myTree.Add('B');
@@ -27,6 +30,23 @@ int main(int argc, char** argv)
 
 	treeNode<char>* i = myTree.Add('I', g);
 	myTree.Add('H', i);
+*/
+
+	Tree<char> myTree('1');
+
+	treeNode <char>* dos = myTree.Add('2');
+	treeNode <char>* tres = myTree.Add('3');
+	treeNode <char>* quatre = myTree.Add('4');
+
+	myTree.Add('5', dos);
+	myTree.Add('6', dos);
+
+	myTree.Add('7', tres);
+
+	myTree.Add('8', quatre);
+	myTree.Add('9', quatre);
+	myTree.Add('a', quatre);
+
 
 	DList<char>* myList_PreorderRecursive = new DList<char>;
 	DList<char>* myList_InorderRecursive = new DList<char>;
@@ -40,7 +60,7 @@ int main(int argc, char** argv)
 	myTree.InorderRecursive(myList_InorderRecursive);
 	myTree.PostorderRecursive(myList_PostorderRecursive);
 	myTree.PreorderIterative(myList_PreorderIterative);
-
+	myTree.InorderIterative(myList_InorderIterative);
 	myTree.PostorderIterative(myList_PostorderIterative);
 
 
@@ -51,7 +71,7 @@ int main(int argc, char** argv)
 	tmp = myList_PreorderRecursive->start;
 	std::cout << "Preorder Recursive    ";
 
-	for (int i = 0; i < 9; i++)
+	for (int i = 0; i < myList_PreorderRecursive->NodeCounter(); i++)
 	{
 		std::cout << tmp->atr << " ";
 		tmp = tmp->next;
@@ -61,7 +81,7 @@ int main(int argc, char** argv)
 	tmp = myList_PreorderIterative->start;
 	std::cout << "Preorder Iterative    ";
 
-	for (int i = 0; i < 9; i++)
+	for (int i = 0; i < myList_PreorderIterative->NodeCounter(); i++)
 	{
 		std::cout << tmp->atr << " ";
 		tmp = tmp->next;
@@ -73,7 +93,7 @@ int main(int argc, char** argv)
 	tmp = myList_InorderRecursive->start;
 	std::cout << "Inorder Recursive     ";
 
-	for (int i = 0; i < 9; i++)
+	for (int i = 0; i < myList_InorderRecursive->NodeCounter(); i++)
 	{
 		std::cout << tmp->atr << " ";
 		tmp = tmp->next;
@@ -82,14 +102,14 @@ int main(int argc, char** argv)
 
 	
 	tmp = myList_InorderIterative->start;
-	std::cout << "Inorder Iterative      ";
-	/*
-	for (int i = 0; i < 9; i++)
+	std::cout << "Inorder Iterative     ";
+	
+	for (int i = 0; i < myList_InorderIterative->NodeCounter(); i++)
 	{
 		std::cout << tmp->atr << " ";
 		tmp = tmp->next;
 	}
-	*/
+	
 	std::cout << std::endl << std::endl << std::endl;
 
 	std::cout << "Postorder             A C E D B H I G F" << std::endl << std::endl;
@@ -97,7 +117,7 @@ int main(int argc, char** argv)
 	tmp = myList_PostorderRecursive->start;
 	std::cout << "Postorder Recursive:  ";
 
-	for (int i = 0; i < 9; i++)
+	for (int i = 0; i < myList_PostorderRecursive->NodeCounter(); i++)
 	{
 		std::cout << tmp->atr << " ";
 		tmp = tmp->next;
@@ -108,7 +128,7 @@ int main(int argc, char** argv)
 	tmp = myList_PostorderIterative->start;
 	std::cout << "Postorder Iterative   ";
 
-	for (int i = 0; i < 9; i++)
+	for (int i = 0; i < myList_PostorderIterative->NodeCounter(); i++)
 	{
 		std::cout << tmp->atr << " ";
 		tmp = tmp->next;
