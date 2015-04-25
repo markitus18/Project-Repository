@@ -53,7 +53,7 @@ public:
 	void PushBack(const TYPE value) //afegir un valor al final
 	{
 
-		if (numElements +1 > allocatedMemory)
+		if (numElements >= allocatedMemory)
 			Reallocate(allocatedMemory + 1);
 
 		numElements++;
@@ -84,24 +84,16 @@ public:
 			return true;
 		}
 
-		if (numElements + 1 == allocatedMemory)
-		{
+		if (numElements + 1 > allocatedMemory)
 			Reallocate(allocatedMemory + 1);
-			TYPE* newData = new TYPE[numElements + 2];
 
-			for (int i = 0; i <= numElements; i++)
-			{
-				newData[i] = data[i];
-			}
-
-			data[position] = value;
-			numElements++;
-			for (int i = position+1; i < numElements + 1; i++)
-			{
-				data[i] = newData[i - 1];
-			}
-
+		for (unsigned int i = numElements; i > position; --i)
+		{
+			data[i] = data[i - 1];
 		}
+
+		data[position] = value;
+		numElements++;
 	}
 
 	TYPE* At(const unsigned int index)

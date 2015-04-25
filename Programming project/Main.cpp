@@ -1,4 +1,3 @@
-/*
 #include "String.h"
 #include "SList.h"
 #include "DList.h"
@@ -6,7 +5,7 @@
 #include "globals.h"
 #include "Projectile.h"
 #include "Point2f.h"
-*/
+
 #include "Queue.h"
 #include "Tree.h"
 #include "Stack.h"
@@ -14,8 +13,6 @@
 #include <iostream>
 int main(int argc, char** argv)
 {
-
-	int nodes = 10;
 /*
 	Tree<char> myTree('F');
 
@@ -31,6 +28,7 @@ int main(int argc, char** argv)
 	treeNode<char>* i = myTree.Add('I', g);
 	myTree.Add('H', i);
 */
+	
 
 	Tree<char> myTree('1');
 
@@ -66,7 +64,7 @@ int main(int argc, char** argv)
 
 	dnode<char>* tmp = new dnode<char>;
 
-	std::cout << "Preorder              F B A D C E G I H" << std::endl << std::endl;
+	std::cout << "Preorder              1 2 5 6 3 7 4 8 9 a" << std::endl << std::endl;
 
 	tmp = myList_PreorderRecursive->start;
 	std::cout << "Preorder Recursive    ";
@@ -88,7 +86,7 @@ int main(int argc, char** argv)
 	}
 	std::cout << std::endl << std::endl << std::endl;
 
-	std::cout << "Inorder(rounded down) A B C D E F G I H" << std::endl << std::endl;
+	std::cout << "Inorder(rounded down) 5 2 6 1 3 7 8 4 9 a" << std::endl << std::endl;
 
 	tmp = myList_InorderRecursive->start;
 	std::cout << "Inorder Recursive     ";
@@ -112,7 +110,7 @@ int main(int argc, char** argv)
 	
 	std::cout << std::endl << std::endl << std::endl;
 
-	std::cout << "Postorder             A C E D B H I G F" << std::endl << std::endl;
+	std::cout << "Postorder             5 6 2 7 3 8 9 a 4 1" << std::endl << std::endl;
 
 	tmp = myList_PostorderRecursive->start;
 	std::cout << "Postorder Recursive:  ";

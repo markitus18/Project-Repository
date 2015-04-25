@@ -1,3 +1,6 @@
+#ifndef __DLIST_H__
+#define __DLIST_H__
+
 #include <stdlib.h>
 #include <Windows.h>
 
@@ -132,3 +135,5 @@ public:
 		end = start;
 	}
 };
+
+#endif //__SLIST_H__
