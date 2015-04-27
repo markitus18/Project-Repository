@@ -35,7 +35,11 @@ int main(int argc, char** argv)
 	treeNode <char>* dos = myTree.Add('2');
 	treeNode <char>* tres = myTree.Add('3');
 	treeNode <char>* quatre = myTree.Add('4');
+	
+	myTree.Clear();
 
+	int b = 5;
+	/*
 	myTree.Add('5', dos);
 	myTree.Add('6', dos);
 
@@ -134,6 +138,7 @@ int main(int argc, char** argv)
 
 	std::cout << std::endl << std::endl;
 
+	*/
 	system("pause");
 
 	return 0;
