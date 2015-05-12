@@ -121,6 +121,70 @@ public:
 		numElements = 0;
 	}
 
+	int BubbleSort_i()
+	{
+		bool swap = true;
+		int counter = 0;
+
+		while (swap == true)
+		{
+			swap = false;
+			for (int i = 0; i < (GetSize() - 1); i++)
+			{
+				counter++;
+				if (data[i] > data[i + 1])
+				{
+					Swap(data[i], data[i + 1]);
+					swap = true;
+				}
+			}
+		}
+		return counter;
+	}
+
+	// Casa: "algoritmo definitivo": comsort -> gap: distància entre els dos numeros que s'estan comparant
+	//											agafa el gap amb la distància d'un 97% i el redueix a 1 a cada iteració.
+	int BubbleSort()
+	{
+		bool swap = true;
+		int counter = 0;
+
+		int lastItem = GetSize() - 1;
+		int lastItem_tmp = lastItem;
+
+		int firstItem = 0;
+		int firstItem_tmp = firstItem;
+		while (swap == true)
+		{
+			swap = false;
+
+			for (int i = firstItem; i < lastItem; i++)
+			{
+				counter++;
+				if (data[i] > data[i + 1])
+				{
+					Swap(data[i], data[i + 1]);
+					swap = true;
+					lastItem_tmp = i;
+				}
+			}
+
+			lastItem = lastItem_tmp;
+			for (int i = lastItem; i > firstItem; i--)
+			{
+				counter++;
+				if (data[i] < data[i - 1])
+				{
+					Swap(data[i], data[i - 1]);
+					swap = true;
+					firstItem_tmp = i;
+				}
+			}
+			firstItem = firstItem_tmp;
+		}
+		return counter;
+	}
+
 
 	/////////////
 	//Operators//

@@ -11,8 +11,28 @@
 #include "Stack.h"
 
 #include <iostream>
+
 int main(int argc, char** argv)
 {
+	DynArray<int> array;
+
+	for (int i = 10000; i > 0; i--)
+	{
+		array.PushBack(rand());
+	}
+
+	int iterations_i = 0;
+	int iterations = 0;
+
+
+	iterations = array.BubbleSort();
+	
+	for (int i = 0; i < 10000; i++)
+	{
+		std::cout<< array[i]<<" ";
+	}
+	
+	std::cout<<std::endl<<(iterations)<<std::endl;
 /*
 	Tree<char> myTree('F');
 
@@ -27,7 +47,7 @@ int main(int argc, char** argv)
 
 	treeNode<char>* i = myTree.Add('I', g);
 	myTree.Add('H', i);
-*/
+
 	
 
 	Tree<char> myTree('1');
@@ -39,7 +59,7 @@ int main(int argc, char** argv)
 	myTree.Clear();
 
 	int b = 5;
-	/*
+
 	myTree.Add('5', dos);
 	myTree.Add('6', dos);
 
