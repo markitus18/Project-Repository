@@ -46,16 +46,6 @@ public:
 
 	String String::prefix(const String& string)
 	{
-		/*
-		if (memorySize > GetLenght() + string.GetLenght())
-		{
-		String tmp(*this);
-		strcpy_s(str, string.memorySize, string.str);
-		strcat_s(str, GetLenght() + string.memorySize, tmp.str);
-
-		return str;
-		}
-		*/
 		String tmp(*this);
 		delete[]str;
 		memorySize = (tmp.memorySize + string.memorySize - 1);
@@ -89,6 +79,8 @@ public:
 	char* GetString() const;
 
 	void Alloc(const int memory);
+
+	void Trim();
 
 	//////////////
 	//Destructor//

@@ -9,11 +9,31 @@
 #include "Queue.h"
 #include "Tree.h"
 #include "Stack.h"
+#include "Circle.h"
 
 #include <iostream>
 
 int main(int argc, char** argv)
 {
+	String a ("   hola  ");
+	a.Trim();
+
+	for (int i = 0; i < a.GetLenght(); i++)
+	{
+		std::cout << a.str[i];
+	}
+	/*
+	Circle <int> a(5, 3, 2);
+	Circle <int> b(1, 2, 2);
+
+	bool intersect = a.Intersect(b);
+
+	if (intersect)
+		printf("true");
+	else
+		printf("false");
+
+	/*
 	DynArray<int> array;
 
 	for (int i = 10000; i > 0; i--)

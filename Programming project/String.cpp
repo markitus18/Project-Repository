@@ -169,7 +169,40 @@ void String::Alloc(const int memory)
 	str = new char[memorySize];
 }
 
+void String::Trim()
+{
+	int startingSpaces = 0;
+	int endingSpaces = 0;
+	for (int i = 0; i < GetLenght(); i++)
+	{
+		if (str[i] == ' ')
+			startingSpaces++;
+		else
+			break;
+	}
+	for (int i = GetLenght() - 1; i >= 0; i--)
+	{
+		if (str[i] == ' ')
+			endingSpaces++;
+		else
+			break;
+	}
 
+	int newSize = (GetLenght() - startingSpaces) - endingSpaces;
+
+	String tmp(*this);
+
+	Alloc(newSize + 1);
+
+	for (int i = 0; i < newSize; i++)
+	{
+		str[i] = tmp.str[startingSpaces + i];
+	}
+
+	str[newSize] = '\0';
+
+
+}
 
 String::~String()
 {

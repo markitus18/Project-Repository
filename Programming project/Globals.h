@@ -2,6 +2,7 @@
 
 #define MAX(a, b) (a>b ? a:b)
 
+#define PI 3.141592
 #ifndef __FACT__
 #define __FACT__
 unsigned int Fact(unsigned int value)
