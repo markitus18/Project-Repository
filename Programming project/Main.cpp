@@ -15,13 +15,14 @@
 
 int main(int argc, char** argv)
 {
-	String a ("   hola  ");
+	String a ("   hola     ");
 	a.Trim();
 
 	for (int i = 0; i < a.GetLenght(); i++)
 	{
 		std::cout << a.str[i];
 	}
+	std::cout << std::endl;
 	/*
 	Circle <int> a(5, 3, 2);
 	Circle <int> b(1, 2, 2);

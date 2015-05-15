@@ -171,37 +171,28 @@ void String::Alloc(const int memory)
 
 void String::Trim()
 {
-	int startingSpaces = 0;
-	int endingSpaces = 0;
+	/*
 	for (int i = 0; i < GetLenght(); i++)
 	{
 		if (str[i] == ' ')
+			str.erase(i, 1);
+	}
+	*/
+	unsigned int startingSpaces = 0;
+	unsigned int endingSpaces = 0;
+	for (int i = 0; i < GetLenght() && str[i] == ' '; i++)
+	{
 			startingSpaces++;
-		else
-			break;
 	}
-	for (int i = GetLenght() - 1; i >= 0; i--)
+	for (int i = GetLenght() - 1; i >= 0 && str[i] == ' '; i--)
 	{
-		if (str[i] == ' ')
 			endingSpaces++;
-		else
-			break;
 	}
-
-	int newSize = (GetLenght() - startingSpaces) - endingSpaces;
-
-	String tmp(*this);
-
-	Alloc(newSize + 1);
-
-	for (int i = 0; i < newSize; i++)
+	for (int i = 0; i < GetLenght() - startingSpaces - endingSpaces; i++)
 	{
-		str[i] = tmp.str[startingSpaces + i];
+			str[i] = str[startingSpaces + i];
 	}
-
-	str[newSize] = '\0';
-
-
+	str[GetLenght() - startingSpaces - endingSpaces] = '\0';
 }
 
 String::~String()
