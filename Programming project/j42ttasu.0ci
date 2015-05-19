@@ -152,7 +152,7 @@ public:
 			if (counter == index)
 				return tmp->atr;
 			else
-				assert(1 == 2);
+		//		assert(1 == 2);
 		}
 	}
 
@@ -190,7 +190,7 @@ public:
 				itinerations++;
 				if (tmp->atr > tmp->next->atr)
 				{
-					/*
+				//	Swap(tmp->atr, tmp->next->atr);
 					if (tmp->next->next != NULL)
 						tmp->next->next->previous = tmp;
 					if (tmp->previous != NULL)
@@ -201,32 +201,13 @@ public:
 
 					tmp->next = tmp->previous->next;
 					tmp->previous->next = tmp;
-					*/
-					SwapNodes(tmp, tmp->next);
+					
 					swap = true;
 				}
 				tmp = tmp->next;
 			}
 		}
 		return itinerations;
-	}
-
-	void SwapNodes(dnode<TYPE>* node1, dnode<TYPE>* node2)
-	{
-		dnode<TYPE>* tmp;
-		if (node1->previous)
-			node1->previous->next = node2;
-		if (node2->next)
-			node2->next->previous = node1;
-		tmp = node2->next;
-		node2->next = node1->next;
-		node1->next = tmp;
-		tmp = node2->previous;
-		node2->previous = node1->previous;
-		node1->previous = tmp;
-
-		node1->previous->next = node1;
-		node2->next->previous = node2;
 	}
 };
 #endif //__SLIST_H__

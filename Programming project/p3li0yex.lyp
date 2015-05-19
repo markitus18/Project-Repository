@@ -13,30 +13,8 @@
 
 #include <iostream>
 
-
-int Fib(int position)
-{
-	int result = 1;
-	for (int i = 0, p = i; i < position; ++i, result += p, p = result - p)
-	return result;
-}
-
-
 int main(int argc, char** argv)
 {
-
-
-
-
-	/*
-	DList<int> myList;
-	for (int i = 0; i < 6; i++)
-	{
-		myList.Add(i);
-	}
-	myList.SwapNodes(myList.GetPointer(2), myList.GetPointer(3));
-
-	/*
 	DList <int> myList;
 	for (int i = 0; i < 9000; i++)
 	{
