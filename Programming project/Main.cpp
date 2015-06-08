@@ -24,10 +24,10 @@ int Fib(int position)
 
 int main(int argc, char** argv)
 {
+	String a("holahola");
+	a.Substitute("hola", "adeu");
 
-
-
-
+	std::cout << (a.str) << std::endl;
 	/*
 	DList<int> myList;
 	for (int i = 0; i < 6; i++)

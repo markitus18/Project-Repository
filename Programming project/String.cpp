@@ -140,6 +140,50 @@ String String::operator += (const String& string)
 	return *this;
 }
 
+String String::prefix(const String& string)
+{
+	String tmp(*this);
+	delete[]str;
+	memorySize = (tmp.memorySize + string.memorySize - 1);
+	str = new char[memorySize];
+
+	strcpy_s(str, string.memorySize, string.str);
+	strcat_s(str, memorySize, tmp.str);
+
+	return str;
+}
+
+String String::prefix(const char* string)
+{
+	String tmp(*this);
+	delete[]str;
+	memorySize = (tmp.memorySize + strlen(string));
+	str = new char[memorySize];
+
+	strcpy_s(str, strlen(string) + 1, string);
+	strcat_s(str, memorySize, tmp.str);
+
+	return str;
+}
+
+void String::Trim()
+{
+	unsigned int startingSpaces = 0;
+	unsigned int endingSpaces = 0;
+	for (int i = 0; i < GetLenght() && str[i] == ' '; i++)
+	{
+			startingSpaces++;
+	}
+	for (int i = GetLenght() - 1; i >= 0 && str[i] == ' '; i--)
+	{
+			endingSpaces++;
+	}
+	for (int i = 0; i < GetLenght() - startingSpaces - endingSpaces; i++)
+	{
+			str[i] = str[startingSpaces + i];
+	}
+	str[GetLenght() - startingSpaces - endingSpaces] = '\0';
+}
 
 
 int String::GetLenght() const
@@ -156,7 +200,6 @@ char* String::GetString() const
 {
 	return str;
 }
-
 void String::Clear()
 {
 	strcpy_s(str, 1, "");
@@ -169,30 +212,43 @@ void String::Alloc(const int memory)
 	str = new char[memorySize];
 }
 
-void String::Trim()
+void String::Substitute(const char* previousStr, const char* newStr)
 {
-	/*
-	for (int i = 0; i < GetLenght(); i++)
+	String newString(newStr);
+	String oldString(previousStr);
+
+	int previousLenght = strlen(previousStr);
+	int newLenght = strlen(newStr);
+
+	int cmpCounter = 0;
+
+	//In case both strings have the same lenght
+	if (previousLenght >= strlen(newStr))
 	{
-		if (str[i] == ' ')
-			str.erase(i, 1);
+		for (int i = 0, k = 0; i < strlen(str); i++, k ++)
+		{
+			if (previousStr[k] == str[i])
+			{
+				cmpCounter++;
+				if (cmpCounter == newLenght)
+				{
+					k = -1;
+					cmpCounter = 0;
+					for (int j = 0; j < newLenght; j++)
+					{
+						str[i - (previousLenght - 1) + j] = newStr[j];
+					}
+				}
+			}
+		}
+	}
+	/*
+	int wordsToChange = 0;
+	for (int i = 0; i < strlen(str); i++)
+	{
+
 	}
 	*/
-	unsigned int startingSpaces = 0;
-	unsigned int endingSpaces = 0;
-	for (int i = 0; i < GetLenght() && str[i] == ' '; i++)
-	{
-			startingSpaces++;
-	}
-	for (int i = GetLenght() - 1; i >= 0 && str[i] == ' '; i--)
-	{
-			endingSpaces++;
-	}
-	for (int i = 0; i < GetLenght() - startingSpaces - endingSpaces; i++)
-	{
-			str[i] = str[startingSpaces + i];
-	}
-	str[GetLenght() - startingSpaces - endingSpaces] = '\0';
 }
 
 String::~String()

@@ -44,31 +44,13 @@ public:
 
 	String operator += (const String& string);
 
-	String String::prefix(const String& string)
-	{
-		String tmp(*this);
-		delete[]str;
-		memorySize = (tmp.memorySize + string.memorySize - 1);
-		str = new char[memorySize];
+	String prefix(const String& string);
 
-		strcpy_s(str, string.memorySize, string.str);
-		strcat_s(str, memorySize, tmp.str);
+	String prefix(const char* string);
 
-		return str;
-	}
+	void Trim();
 
-	String String::prefix(const char* string)
-	{
-		String tmp(*this);
-		delete[]str;
-		memorySize = (tmp.memorySize + strlen(string));
-		str = new char[memorySize];
-
-		strcpy_s(str, strlen(string) + 1, string);
-		strcat_s(str, memorySize, tmp.str);
-
-		return str;
-	}
+	void Substitute(const char* previousStr, const char* newStr);
 
 	void Clear();
 
@@ -80,7 +62,6 @@ public:
 
 	void Alloc(const int memory);
 
-	void Trim();
 
 	//////////////
 	//Destructor//
