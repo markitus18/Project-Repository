@@ -251,16 +251,17 @@ void String::Substitute(const char* previousStr, const char* newStr)
 	if (previousLenght < newLenght)
 	{
 		int wordsToChange = 0;
-		for (int i = 0, k = 0; i < strlen(str); i++, k++)
+		for (int i = 0, k = 0; i < strlen(str); i++)
 		{
 			if (previousStr[k] == str[i])
 			{
+				k++;
 				cmpCounter++;
 				if (cmpCounter == previousLenght)
 				{
 					wordsToChange++;
 					cmpCounter = 0;
-					k = -1;
+					k = 0;
 				}
 			}
 		}
@@ -270,25 +271,26 @@ void String::Substitute(const char* previousStr, const char* newStr)
 		{
 			String tmp = *this;
 			Alloc(strlen(str) + wordsToChange * (newLenght - previousLenght) + 1);
-			for (int i = 0, k = 0, m = 0; i < memorySize - 1; i++, k++, m++)
+			for (int i = 0, k = 0, m = 0; i < memorySize - 1; i++, m++)
 			{
 				str[i] = tmp.str[m];
 				if (str[i] == previousStr[k])
 				{
+					k++;
 					cmpCounter++;
 					if (cmpCounter == previousLenght)
 					{
 						for (int j = 0; j < newLenght; j++)
 						{
-							str[i - (previousLenght - 1)+ j] = newStr[j];
+							str[i - (previousLenght - 1) + j] = newStr[j];
 						}
 						i += (newLenght - previousLenght);
-						k = -1;
+						k = 0;
 						cmpCounter = 0;
 					}
 				}
 			}
-			str[strlen(tmp.str) + wordsToChange * (newLenght - previousLenght)] = '\0';
+			str[memorySize - 1] = '\0';
 		}
 	}
 

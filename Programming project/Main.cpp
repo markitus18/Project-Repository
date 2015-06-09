@@ -26,7 +26,7 @@ int main(int argc, char** argv)
 {
 
 	
-	String a("holaaholaa");
+	String a("holaa holaa");
 //	a.DeleteSpaces();
 	a.Substitute("holaa", "adeueueue");
 
