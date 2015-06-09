@@ -50,6 +50,8 @@ public:
 
 	void Trim();
 
+	void DeleteSpaces();
+
 	void Substitute(const char* previousStr, const char* newStr);
 
 	void Clear();

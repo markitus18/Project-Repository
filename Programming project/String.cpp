@@ -214,41 +214,103 @@ void String::Alloc(const int memory)
 
 void String::Substitute(const char* previousStr, const char* newStr)
 {
-	String newString(newStr);
-	String oldString(previousStr);
-
 	int previousLenght = strlen(previousStr);
 	int newLenght = strlen(newStr);
 
 	int cmpCounter = 0;
 
 	//In case both strings have the same lenght
-	if (previousLenght >= strlen(newStr))
+	if (previousLenght >= newLenght)
 	{
 		for (int i = 0, k = 0; i < strlen(str); i++, k ++)
 		{
 			if (previousStr[k] == str[i])
 			{
 				cmpCounter++;
-				if (cmpCounter == newLenght)
+				if (cmpCounter == previousLenght)
 				{
 					k = -1;
 					cmpCounter = 0;
-					for (int j = 0; j < newLenght; j++)
+					for (int j = 0; j < previousLenght; j++)
 					{
-						str[i - (previousLenght - 1) + j] = newStr[j];
+						if (newStr[j])
+							str[i - (previousLenght - 1) + j] = newStr[j];
+						else
+							str[i - (previousLenght - 1) + j] = ' ';
 					}
 				}
 			}
 		}
 	}
+	if (previousLenght > newLenght)
+		DeleteSpaces();
 	/*
-	int wordsToChange = 0;
-	for (int i = 0; i < strlen(str); i++)
+	if (previousLenght < newLenght)
 	{
-
+		int wordsToChange = 0;
+		for (int i = 0, k = 0; i < strlen(str); i++, k++)
+		{
+			if (previousStr[k] == str[i])
+			{
+				cmpCounter++;
+				if (cmpCounter == previousLenght)
+				{
+					wordsToChange++;
+					cmpCounter = 0;
+					k = -1;
+				}
+			}
+		}
+		cmpCounter = 0;
+		if (wordsToChange)
+		{
+			String tmp = *this;
+			Alloc(strlen(str) + wordsToChange * (newLenght - previousLenght) + 1);
+			for (int i = 0, k = 0; i < memorySize - 1; i++, k++)
+			{
+				str[i] = tmp.str[i];
+				if (str[i] == previousStr[k])
+				{
+					cmpCounter++;
+					if (cmpCounter == previousLenght)
+					{
+						for (int j = 0; j < newLenght; j++)
+						{
+							str[i - (previousLenght - 1)+ j] = newStr[j];
+						}
+						i += (newLenght - previousLenght);
+						k = -1;
+					}
+				}
+			}
+			str[strlen(tmp.str) + wordsToChange * (newLenght - previousLenght)] = '\0';
+		}
 	}
 	*/
+}
+
+void String::DeleteSpaces()
+{
+	bool spaceOn = false;
+	bool finished = false;
+	int i = 0;
+		for (; i < strlen(str); i++)
+		{
+			if (str[i] == ' ')
+			{
+				spaceOn = true;
+				break;
+			}
+		}
+		if (spaceOn)
+		{
+			for (; i < strlen(str); i++)
+			{
+				if ((i + 1) <= strlen(str))
+					str[i] = str[i + 1];
+			}
+			DeleteSpaces();
+		}
 }
 
 String::~String()
