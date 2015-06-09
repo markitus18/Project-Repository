@@ -219,7 +219,7 @@ void String::Substitute(const char* previousStr, const char* newStr)
 
 	int cmpCounter = 0;
 
-	//In case both strings have the same lenght
+	//In case we dont need to allocate more memory
 	if (previousLenght >= newLenght)
 	{
 		for (int i = 0, k = 0; i < strlen(str); i++, k ++)
@@ -242,9 +242,12 @@ void String::Substitute(const char* previousStr, const char* newStr)
 			}
 		}
 	}
+	//Delete spaces left 
 	if (previousLenght > newLenght)
 		DeleteSpaces();
-	/*
+	
+	//In case we need more memory
+	//Check how many words we need to change
 	if (previousLenght < newLenght)
 	{
 		int wordsToChange = 0;
@@ -262,13 +265,14 @@ void String::Substitute(const char* previousStr, const char* newStr)
 			}
 		}
 		cmpCounter = 0;
+		//Create the new word
 		if (wordsToChange)
 		{
 			String tmp = *this;
 			Alloc(strlen(str) + wordsToChange * (newLenght - previousLenght) + 1);
-			for (int i = 0, k = 0; i < memorySize - 1; i++, k++)
+			for (int i = 0, k = 0, m = 0; i < memorySize - 1; i++, k++, m++)
 			{
-				str[i] = tmp.str[i];
+				str[i] = tmp.str[m];
 				if (str[i] == previousStr[k])
 				{
 					cmpCounter++;
@@ -280,13 +284,14 @@ void String::Substitute(const char* previousStr, const char* newStr)
 						}
 						i += (newLenght - previousLenght);
 						k = -1;
+						cmpCounter = 0;
 					}
 				}
 			}
 			str[strlen(tmp.str) + wordsToChange * (newLenght - previousLenght)] = '\0';
 		}
 	}
-	*/
+
 }
 
 void String::DeleteSpaces()

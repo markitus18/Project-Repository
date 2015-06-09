@@ -25,9 +25,9 @@ int Fib(int position)
 int main(int argc, char** argv)
 {
 
-	/*
+	
 	String a("holaaholaa");
-	a.DeleteSpaces();
+//	a.DeleteSpaces();
 	a.Substitute("holaa", "adeueueue");
 
 	std::cout << (a.str) << std::endl;
