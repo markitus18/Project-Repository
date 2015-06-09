@@ -26,9 +26,9 @@ int main(int argc, char** argv)
 {
 
 	
-	String a("holaa holaa");
+	String a("hola hola");
 //	a.DeleteSpaces();
-	a.Substitute("holaa", "adeueueue");
+	a.Substitute("hola", "adeu");
 
 	std::cout << (a.str) << std::endl;
 	/*

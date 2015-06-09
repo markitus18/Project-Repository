@@ -222,21 +222,30 @@ void String::Substitute(const char* previousStr, const char* newStr)
 	//In case we dont need to allocate more memory
 	if (previousLenght >= newLenght)
 	{
-		for (int i = 0, k = 0; i < strlen(str); i++, k ++)
+		for (int i = 0, k = 0; i < strlen(str); i++)
 		{
 			if (previousStr[k] == str[i])
 			{
 				cmpCounter++;
+				k++;
 				if (cmpCounter == previousLenght)
 				{
-					k = -1;
+					k = 0;
 					cmpCounter = 0;
 					for (int j = 0; j < previousLenght; j++)
 					{
 						if (newStr[j])
 							str[i - (previousLenght - 1) + j] = newStr[j];
 						else
-							str[i - (previousLenght - 1) + j] = ' ';
+							for (int loops = 0; loops < previousLenght - newLenght; loops++)
+							{
+								for (int m = i - (previousLenght - 1) + j + loops; m < strlen(str); m++)
+								{
+									str[m] = str[m + 1];
+								}
+							}
+
+					//		str[i - (previousLenght - 1) + j] = ' ';
 					}
 				}
 			}
@@ -244,7 +253,7 @@ void String::Substitute(const char* previousStr, const char* newStr)
 	}
 	//Delete spaces left 
 	if (previousLenght > newLenght)
-		DeleteSpaces();
+//		DeleteSpaces();
 	
 	//In case we need more memory
 	//Check how many words we need to change
