@@ -24,11 +24,12 @@ int Fib(int position)
 
 int main(int argc, char** argv)
 {
-
 	
-	String a("hola hola");
+
+	/*
+	String a("holaa holaa");
 //	a.DeleteSpaces();
-	a.Substitute("hola", "adeu");
+	a.Substitute("holaa", "adeu");
 
 	std::cout << (a.str) << std::endl;
 	/*
